@@ -19,6 +19,7 @@
                 <div class="top-bar-right">
                     <ul class="menu">
                         <li><router-link :to="{ name: 'Main' }">main</router-link></li>
+                        <li>comment</li>
                     </ul>
                 </div>
             </div>

@@ -1945,6 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: {
@@ -2030,14 +2031,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       cooking: null,
-      count: 0,
-      count_number: 1,
-      customizedClass: 'orange'
+      count_number: 0,
+      customizedClass: 'white'
     };
   },
   mounted: function mounted() {
@@ -2048,6 +2065,14 @@ __webpack_require__.r(__webpack_exports__);
     }.bind(this))["catch"](function (error) {
       console.log(error);
     });
+
+    if (this.cooking[this.count_number].recipe_type == "main_dish") {
+      this.customizedClass = "orange";
+    } else if (this.cooking[this.count_number].recipe_type == "side_dish") {
+      this.customizedClass = "green";
+    } else {
+      this.customizedClass = "white";
+    }
   },
   methods: {
     click_count_up: function click_count_up() {
@@ -2078,7 +2103,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".content[data-v-b9c20fb8] {\n  width: 100%;\n}\n.button__top__contain[data-v-b9c20fb8] {\n  text-align: center;\n}\n.button-top[data-v-b9c20fb8] {\n  margin: 20px 0;\n  justify-content: center;\n  display: inline-block;\n  padding: 0.5em 1em;\n  text-decoration: none;\n  background: #668ad8;\n  color: #FFF;\n  border-bottom: solid 4px #627295;\n  border-radius: 3px;\n  cursor: pointer;\n}\n.services__item__img-box[data-v-b9c20fb8] {\n  width: 100%;\n  text-align: center;\n  padding-bottom: 50px;\n}\n.orange[data-v-b9c20fb8] {\n  background-color: #ffa500;\n}\n.green[data-v-b9c20fb8] {\n  background-color: #6b8e23;\n}\n.white[data-v-b9c20fb8] {\n  background-color: #fafad2;\n}", ""]);
+exports.push([module.i, ".content[data-v-b9c20fb8] {\n  width: 100%;\n}\n.button__top__contain[data-v-b9c20fb8] {\n  text-align: center;\n}\n.button-top[data-v-b9c20fb8] {\n  margin: 20px 0;\n  justify-content: center;\n  display: inline-block;\n  padding: 0.5em 1em;\n  text-decoration: none;\n  background: #668ad8;\n  color: #FFF;\n  border-bottom: solid 4px #627295;\n  border-radius: 3px;\n  cursor: pointer;\n}\n.services__item__img-box[data-v-b9c20fb8] {\n  width: 100%;\n  text-align: center;\n  padding-bottom: 50px;\n}\n.orange[data-v-b9c20fb8] {\n  background-color: #ffa500;\n}\n.green[data-v-b9c20fb8] {\n  background-color: #6b8e23;\n}\n.white[data-v-b9c20fb8] {\n  background-color: #fafad2;\n}\n.content__second[data-v-b9c20fb8] {\n  width: 30%;\n}\n.img-box[data-v-b9c20fb8] {\n  display: flex;\n  flex-direction: row;\n  width: 30%;\n  height: 100px;\n}\n.second-title[data-v-b9c20fb8] {\n  font-size: 50%;\n}\n.flex[data-v-b9c20fb8] {\n  width: 30%;\n  height: 100px;\n  padding: 2.5% 0;\n  display: flex;\n  flex-direction: row;\n}\nul[data-v-b9c20fb8] {\n  overflow: hidden;\n  letter-spacing: -0.5em;\n}\nli[data-v-b9c20fb8] {\n  display: inline-block;\n  width: 10%;\n  vertical-align: middle;\n  letter-spacing: 0;\n  text-align: center;\n}\n.comment__content[data-v-b9c20fb8] {\n  text-align: center;\n}", ""]);
 
 // exports
 
@@ -3273,7 +3298,9 @@ var render = function() {
                 ])
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _c("li", [_vm._v("comment")])
           ])
         ])
       ])
@@ -3403,6 +3430,23 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content", class: _vm.customizedClass }, [
+    _c(
+      "ul",
+      _vm._l(_vm.cooking, function(item) {
+        return _c("li", [
+          _c("img", {
+            attrs: {
+              src: item.image_url,
+              width: "50",
+              height: "25",
+              alt: "イラスト1"
+            }
+          })
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "button__top__contain" }, [
       _c(
         "div",
@@ -3438,10 +3482,44 @@ var render = function() {
           ])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.cooking, function(item) {
+        return _c("li", [
+          _c("img", {
+            attrs: {
+              src: item.image_url,
+              width: "100",
+              height: "50",
+              alt: "イラスト1"
+            }
+          })
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "comment__content" }, [
+      _c("p", [_vm._v("コメント一覧")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("------------")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("美味しそう")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("作ってみたい！")])
+    ])
+  }
+]
 render._withStripped = true
 
 

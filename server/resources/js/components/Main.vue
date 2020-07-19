@@ -1,6 +1,9 @@
 <template>
 
   <div class="content" :class="customizedClass">
+    <ul>
+      <li v-for="item in cooking"><img  v-bind:src="item.image_url" width="50" height="25" alt="イラスト1"></li>
+    </ul>
     <div class="button__top__contain">
       <div class="button-top" v-on:click="click_count_up">次の料理をみる！</div>
     </div>
@@ -17,7 +20,21 @@
           </figure>
         </div>
       </div>
+    </div>   
+    <ul>
+      <li v-for="item in cooking"><img  v-bind:src="item.image_url" width="100" height="50" alt="イラスト1"></li>
+    </ul>
+
+    <div class="comment__content">
+    <p>コメント一覧</p>
+    <p>------------</p>
+    <p>美味しそう</p>
+    <p>作ってみたい！</p>
+
     </div>
+    </div>
+
+
     </div><!-- /wrap -->
   </div>
 </template>
@@ -27,9 +44,8 @@ import axios from 'axios'
     data() {
         return {
             cooking: null,
-            count: 0,
-            count_number: 1,
-            customizedClass: 'orange'
+            count_number: 0,
+            customizedClass: 'white',
         };
     },
     mounted: function(){
@@ -43,6 +59,14 @@ import axios from 'axios'
       .catch(function(error){
         console.log(error)
       })
+
+      if(this.cooking[this.count_number].recipe_type =="main_dish"){
+        this.customizedClass = "orange"
+      }else if(this.cooking[this.count_number].recipe_type =="side_dish"){
+        this.customizedClass = "green"
+      }else{
+        this.customizedClass = "white"
+      }
     },
     methods:{
       click_count_up: function(){
@@ -90,5 +114,40 @@ import axios from 'axios'
 }
 .white {
   background-color: #fafad2;
+}
+.content__second{
+  width:30%;
+}
+.img-box{
+  display: flex;
+  flex-direction: row;
+
+  width:30%;
+  height: 100px;
+}
+.second-title{
+  font-size: 50%;
+}
+.flex{
+  width:30%;
+  height: 100px;
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-evenly;
+}
+ul {
+     overflow: hidden;
+     letter-spacing: -.5em;
+}
+li {
+     display: inline-block;
+     width: 10%;
+     vertical-align: middle;
+     letter-spacing: 0;
+     text-align: center;
+}
+.comment__content{
+  text-align: center;
 }
 </style>
