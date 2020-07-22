@@ -1,4 +1,4 @@
-<template>
+<template v-if="this.cooking">
 
   <div class="content" :class="customizedClass">
     <ul>
@@ -7,7 +7,7 @@
     <div class="button__top__contain">
       <div class="button-top" v-on:click="click_count_up">次の料理をみる！</div>
     </div>
-    <div class="wrap">
+    <div class="wrap" >
       <h4 class="services__item__title" v-if='this.cooking[this.count_number].recipe_type == "main_dish"'>主食</h4>
       <h4 class="services__item__title" v-else-if='this.cooking[this.count_number].recipe_type == "side_dish"'>副食</h4>
       <h4 class="services__item__title" v-else-if='this.cooking[this.count_number].recipe_type == "soup"'>スープ</h4>
@@ -43,9 +43,14 @@ import axios from 'axios'
   export default {
     data() {
         return {
-            cooking: null,
+              cooking: {
+                recipe_type: null,
+                comment : null,
+                image_url: null
+              },
             count_number: 0,
             customizedClass: 'white',
+            item: 0
         };
     },
     mounted: function(){
@@ -53,14 +58,25 @@ import axios from 'axios'
       axios.get('/api/cooking')
       .then(function(response){
 
-        this.cooking = response.data.cooking_records;
-        console.log(this.cooking[1].comment);
+        if(response.data.cooking_records) { // または elem === null で比較
+            for(var i = 0; i > 10; i++){
+            this.cooking = response.data.cooking_records.push();
+            
+            }
+            console.log(this.cooking);
+
+        } else {
+            console.error('見つからない');
+        }
+
+        
       }.bind(this))
       .catch(function(error){
         console.log(error)
       })
 
-      if(this.cooking[this.count_number].recipe_type =="main_dish"){
+      if(this.cooking[this.count_number].recipe_type ==undefined){
+      }else if(this.cooking[this.count_number].recipe_type =="main_dish"){
         this.customizedClass = "orange"
       }else if(this.cooking[this.count_number].recipe_type =="side_dish"){
         this.customizedClass = "green"
@@ -71,13 +87,7 @@ import axios from 'axios'
     methods:{
       click_count_up: function(){
         this.count_number++;
-        if(this.cooking[this.count_number].recipe_type =="main_dish"){
-          this.customizedClass = "orange"
-        }else if(this.cooking[this.count_number].recipe_type =="side_dish"){
-          this.customizedClass = "green"
-        }else{
-          this.customizedClass = "white"
-        }
+
       }
     }
   }
