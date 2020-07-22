@@ -13,7 +13,7 @@
             <!-- ヘッダー -->
             <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small">
                 <button class="menu-icon" type="button" data-toggle></button>
-                <div class="title-bar-title">たのしいレシピ</div>
+                <div class="title-bar-title"></div>
             </div>
             <div class="top-bar" id="realEstateMenu">
                 <div class="top-bar-right">

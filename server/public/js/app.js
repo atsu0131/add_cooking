@@ -2067,10 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/cooking').then(function (response) {
       if (response.data.cooking_records) {
         // または elem === null で比較
-        for (var i = 0; i > 10; i++) {
-          this.cooking = response.data.cooking_records.push();
-        }
-
+        this.cooking = response.data.cooking_records;
         console.log(this.cooking);
       } else {
         console.error('見つからない');
@@ -3359,9 +3356,7 @@ var staticRenderFns = [
           attrs: { type: "button", "data-toggle": "" }
         }),
         _vm._v(" "),
-        _c("div", { staticClass: "title-bar-title" }, [
-          _vm._v("たのしいレシピ")
-        ])
+        _c("div", { staticClass: "title-bar-title" })
       ]
     )
   }

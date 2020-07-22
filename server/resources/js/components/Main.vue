@@ -59,12 +59,8 @@ import axios from 'axios'
       .then(function(response){
 
         if(response.data.cooking_records) { // または elem === null で比較
-            for(var i = 0; i > 10; i++){
-            this.cooking = response.data.cooking_records.push();
-            
-            }
+            this.cooking = response.data.cooking_records;
             console.log(this.cooking);
-
         } else {
             console.error('見つからない');
         }
