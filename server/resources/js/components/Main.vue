@@ -8,15 +8,15 @@
       <div class="button-top" v-on:click="click_count_up">次の料理をみる！</div>
     </div>
     <div class="wrap" >
-      <h4 class="services__item__title" v-if='this.cooking[this.count_number].recipe_type == "main_dish"'>主食</h4>
-      <h4 class="services__item__title" v-else-if='this.cooking[this.count_number].recipe_type == "side_dish"'>副食</h4>
-      <h4 class="services__item__title" v-else-if='this.cooking[this.count_number].recipe_type == "soup"'>スープ</h4>
+      <h4 class="services__item__title" v-if='this.cooking[this.count_number] && this.cooking[this.count_number].recipe_type == "main_dish"'>主食</h4>
+      <h4 class="services__item__title" v-else-if='this.cooking[this.count_number] && this.cooking[this.count_number].recipe_type == "side_dish"'>副食</h4>
+      <h4 class="services__item__title" v-else-if='this.cooking[this.count_number] && this.cooking[this.count_number].recipe_type == "soup"'>スープ</h4>
       <h4 class="services__item__title" v-else>その他</h4>
-      <h2 class="section-title">{{this.cooking[this.count_number].comment}}</h2>
+      <h2 class="section-title" v-if="this.cooking[this.count_number]">{{this.cooking[this.count_number].comment}}</h2>
       <div class="services__container">
         <div class="services__item">
           <figure class="services__item__img-box">
-            <img  v-bind:src="this.cooking[this.count_number].image_url" alt="イラスト1">
+            <img  v-if="this.cooking[this.count_number]" v-bind:src="this.cooking[this.count_number].image_url" alt="イラスト1">
           </figure>
         </div>
       </div>
@@ -58,7 +58,7 @@ import axios from 'axios'
       axios.get('/api/cooking')
       .then(function(response){
 
-        if(response.data.cooking_records) { // または elem === null で比較
+        if(response.data.cooking_records) { 
             this.cooking = response.data.cooking_records;
             console.log(this.cooking);
         } else {

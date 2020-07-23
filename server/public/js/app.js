@@ -2066,7 +2066,6 @@ __webpack_require__.r(__webpack_exports__);
     // Laravel側からデータを取得
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/cooking').then(function (response) {
       if (response.data.cooking_records) {
-        // または elem === null で比較
         this.cooking = response.data.cooking_records;
         console.log(this.cooking);
       } else {
@@ -3456,29 +3455,36 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "wrap" }, [
+      this.cooking[this.count_number] &&
       this.cooking[this.count_number].recipe_type == "main_dish"
         ? _c("h4", { staticClass: "services__item__title" }, [_vm._v("主食")])
-        : this.cooking[this.count_number].recipe_type == "side_dish"
+        : this.cooking[this.count_number] &&
+          this.cooking[this.count_number].recipe_type == "side_dish"
         ? _c("h4", { staticClass: "services__item__title" }, [_vm._v("副食")])
-        : this.cooking[this.count_number].recipe_type == "soup"
+        : this.cooking[this.count_number] &&
+          this.cooking[this.count_number].recipe_type == "soup"
         ? _c("h4", { staticClass: "services__item__title" }, [_vm._v("スープ")])
         : _c("h4", { staticClass: "services__item__title" }, [
             _vm._v("その他")
           ]),
       _vm._v(" "),
-      _c("h2", { staticClass: "section-title" }, [
-        _vm._v(_vm._s(this.cooking[this.count_number].comment))
-      ]),
+      this.cooking[this.count_number]
+        ? _c("h2", { staticClass: "section-title" }, [
+            _vm._v(_vm._s(this.cooking[this.count_number].comment))
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "services__container" }, [
         _c("div", { staticClass: "services__item" }, [
           _c("figure", { staticClass: "services__item__img-box" }, [
-            _c("img", {
-              attrs: {
-                src: this.cooking[this.count_number].image_url,
-                alt: "イラスト1"
-              }
-            })
+            this.cooking[this.count_number]
+              ? _c("img", {
+                  attrs: {
+                    src: this.cooking[this.count_number].image_url,
+                    alt: "イラスト1"
+                  }
+                })
+              : _vm._e()
           ])
         ])
       ])
