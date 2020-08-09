@@ -1,8 +1,9 @@
-<template v-if="this.cooking">
+<template>
 
   <div class="content" :class="customizedClass">
     <ul>
-      <li v-for="item in cooking"><img  v-bind:src="item.image_url" width="50" height="25" alt="イラスト1"></li>
+      <li v-for="item in cooking" v-if="item !== null">
+      <img  v-if="item.image_url !== null" v-bind:src="item.image_url" width="50" height="25" alt="イラスト1"></li>
     </ul>
     <div class="button__top__contain">
       <div class="button-top" v-on:click="click_count_up">次の料理をみる！</div>
@@ -22,7 +23,8 @@
       </div>
     </div>   
     <ul>
-      <li v-for="item in cooking"><img  v-bind:src="item.image_url" width="100" height="50" alt="イラスト1"></li>
+      <li v-for="item in cooking" v-if="item !== null">
+      <img  v-if="item.image_url !== null" v-bind:src="item.image_url" width="100" height="50" alt="イラスト1"></li>
     </ul>
 
     <div class="comment__content">
@@ -71,14 +73,14 @@ import axios from 'axios'
         console.log(error)
       })
 
-      if(this.cooking[this.count_number].recipe_type ==undefined){
-      }else if(this.cooking[this.count_number].recipe_type =="main_dish"){
-        this.customizedClass = "orange"
-      }else if(this.cooking[this.count_number].recipe_type =="side_dish"){
-        this.customizedClass = "green"
-      }else{
-        this.customizedClass = "white"
-      }
+      // if(this.cooking[this.count_number].recipe_type == undefined){
+      // }else if(this.cooking[this.count_number].recipe_type =="main_dish"){
+      //   this.customizedClass = "orange"
+      // }else if(this.cooking[this.count_number].recipe_type =="side_dish"){
+      //   this.customizedClass = "green"
+      // }else{
+      //   this.customizedClass = "white"
+      // }
     },
     methods:{
       click_count_up: function(){
